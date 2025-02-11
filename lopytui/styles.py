@@ -19,6 +19,24 @@ class Choose:
         return '\n'.join([buffer, f"\x1b[{pos[1]-buffer.count('\n')-1};{pos[0]}H"]).strip()
 
     @staticmethod
+    def dwm_vertical(pos: tuple[int], data: str, index: int) -> str:
+        """
+        Example: # Simple, minimalistic, suckless
+          123
+          ███
+          789 (choosed 456, just changed fg color)
+        """
+        buffer = ""
+        selected = "\x1b[37;44m{}\x1b[0m".format
+
+        for id in range(0, len(data), 1):
+            buffer = '\n'.join([
+                buffer, 
+                selected(data[id]) if id == index else data[id]
+            ])
+        return '\n'.join([buffer, f"\x1b[{pos[1]-buffer.count('\n')-1};{pos[0]}H"]).strip()
+
+    @staticmethod
     def table(pos: tuple[int], data: str, index: int) -> str:
         """
         Example: # Perfect for some small elements
