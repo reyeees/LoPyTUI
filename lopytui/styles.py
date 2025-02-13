@@ -26,8 +26,6 @@ class Choose:
           ███
           789 (choosed 456, just changed fg color)
         """
-        print(f"\x1b[{pos[0]+1}G", end = '', flush = True)
-        
         buffer = ""
         selected = "\x1b[37;44m{}\x1b[0m".format
 
@@ -36,7 +34,7 @@ class Choose:
                 buffer, 
                 selected(data[id]) if id == index else data[id]
             ])
-        return '\n'.join([buffer, f"\x1b[{pos[1]-buffer.count('\n')-1};{pos[0]}H"]).strip()
+        return '\n'.join([buffer, f"\n\x1b[{pos[1]-buffer.count('\n')-1};{pos[0]}H"]).strip()
 
     @staticmethod
     def table(pos: tuple[int], data: str, index: int) -> str:
