@@ -26,6 +26,8 @@ class Choose:
           ███
           789 (choosed 456, just changed fg color)
         """
+        print(f"\x1b[{pos[0]+1}G", end = '', flush = True)
+        
         buffer = ""
         selected = "\x1b[37;44m{}\x1b[0m".format
 
